@@ -1,0 +1,43 @@
+{
+  "name": "nucleus-deploy",
+  "version": "0.1.0",
+  "description": "Atomic Smash Deployment scripts neatly wrapped up in an npm package",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "nucleus": "bin/nucleus"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "prepare": "npm run build",
+    "test": "node ./scripts/test.js",
+    "dev": "node ./src/index.js",
+    "start": "node ./src/index.js",
+    "postinstall": "node ./dist/install.js"
+  },
+  "keywords": [
+    "deployment",
+    "tooling",
+    "scripts"
+  ],
+  "author": "Matt Stone",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "yaml": "^2.5.1"
+  }
+}
+
+

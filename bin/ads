@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+// Entry point for the CLI. Keeps minimal logic; defers to src.
+import('../dist/cli.js')
+  .catch(async () => {
+    // Fall back to TS/ESM source during local dev before build
+    const { run } = await import('../src/cli.js');
+    await run(process.argv.slice(2));
+  });
+
+

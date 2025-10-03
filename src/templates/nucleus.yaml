@@ -1,0 +1,60 @@
+# Configuration for Nucleus
+
+project:
+  name: "example"
+  display_name: "Example"
+  theme_name: "example"
+  theme_path: "public/wp-content/themes/example"
+  environments:
+    staging:
+      branch_patterns:
+        - "release/*"
+        - "hotfix/*"
+    production:
+      branch: "main"
+
+build:
+  build_dir: ".build"
+  composer:
+    install_command: "composer install"
+  npm:
+    install_command: "npm install"
+  known_build_tools:
+    webpack: "webpack.config.js"
+    gulp: "gulpfile.js"
+    vite: "vite.config.js"
+  exclusions:
+    public:
+      - "wp/"
+      - "wp-content/debug.log"
+      - "wp-config.php"
+      - "wp-cli.yml"
+    wp:
+      - ".well-known/"
+      - "wp-content/"
+      - "composer.json"
+      - "license.txt"
+      - "readme.html"
+      - "wp-config-sample.php"
+
+deploy:
+  deploy_type: "capistrano|ads"
+  delete_removed_files: true
+  maintenance_mode:
+    plugin: "wp-maintenance-mode"
+    commands:
+      enable: "wp maintenance-mode activate"
+      disable: "wp maintenance-mode deactivate"
+  exclusions:
+    - "cgi-bin/"
+    - "wp-content/uploads/"
+    - "wp-content/cache/"
+    - "wp-content/upgrade/"
+    - "wp-content/wflogs/"
+    - "wp-content/advanced-cache.php"
+    - "wp-content/db.php"
+    - "wp-content/index.php"
+    - "wp-content/object-cache.php"
+    - "wordfence-waf.php"
+    - "wp-config.php"
+    - "wp-cli.yml"
